@@ -1,7 +1,13 @@
 import 'dart:io';
 import 'package:vania/vania.dart';
-import 'create_users_table.dart';
-import 'create_products_table.dart';
+import 'package:vania_api/database/migrations/create_personal_access_tokens_table.dart';
+import 'customers.dart';
+import 'orders.dart';
+import 'products.dart';
+import 'vendors.dart';
+import 'productnotes.dart';
+import 'orderitems.dart';
+import 'users.dart';
 
 void main(List<String> args) async {
   await MigrationConnection().setup();
@@ -16,12 +22,23 @@ void main(List<String> args) async {
 
 class Migrate {
   registry() async {
-		 await CreateUserTable().up();
-		 await CreateProductsTable().up();
-	}
+    await CreatePersonalAccessTokensTable().up();
+    await Customers().up();
+    await Orders().up();
+    await Vendors().up();
+    await Products().up();
+    await Productnotes().up();
+    await Orderitems().up();
+    await Users().up();
+  }
 
   dropTables() async {
-		 await CreateProductsTable().down();
-		 await CreateUserTable().down();
-	 }
+    await Users().down();
+    await Orderitems().down();
+    await Productnotes().down();
+    await Products().down();
+    await Vendors().down();
+    await Orders().down();
+    await Customers().down();
+  }
 }
