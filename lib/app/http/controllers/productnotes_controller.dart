@@ -22,16 +22,15 @@ class ProductnotesController extends Controller {
     try {
       request.validate({
         'prod_id': 'required|string|max_length:10',
-        'note_date': 'required|date',
         'note_text': 'required|string'
       }, {
         'prod_id.required': 'ID produk wajib diisi.',
-        'note_date.required': 'Tanggal catatan wajib diisi.',
         'note_text.required': 'Teks catatan wajib diisi.',
       });
 
       final noteData = request.input();
       noteData['note_id'] = generateId();
+      noteData['note_date'] = DateTime.now();
       await Productnote().query().insert(noteData);
 
       return Response.json({

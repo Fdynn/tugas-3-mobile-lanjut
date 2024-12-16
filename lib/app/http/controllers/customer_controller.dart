@@ -10,12 +10,12 @@ class CustomerController extends Controller {
     try {
       final customers = await Customer().query().get();
       return Response.json({
-        'message': 'Produk berhasil ditemukan.',
+        'message': 'Customer berhasil ditemukan.',
         'data': customers,
       }, 200);
     } catch (e) {
       return Response.json({
-        'message': 'Produk tidak ditemukan.',
+        'message': 'Customer tidak ditemukan.',
       }, 404);
     }
   }
@@ -68,12 +68,12 @@ class CustomerController extends Controller {
       final customer =
           await Customer().query().where('cust_id', '=', custId).first();
       return Response.json({
-        'message': 'Produk berhasil ditemukan.',
+        'message': 'Customer berhasil ditemukan.',
         'data': customer,
       }, 200);
     } catch (e) {
       return Response.json({
-        'message': 'Produk tidak ditemukan.',
+        'message': 'Customer tidak ditemukan.',
       }, 404);
     }
   }

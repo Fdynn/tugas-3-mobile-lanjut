@@ -93,7 +93,7 @@ class OrderController extends Controller {
     }
   }
 
-  Future<Response> update(Request request, String id) async {
+  Future<Response> update(Request request, int id) async {
     try {
       request.validate({
         'order_num': 'required|int',
@@ -147,7 +147,7 @@ class OrderController extends Controller {
     }
   }
 
-  Future<Response> destroy(String id) async {
+  Future<Response> destroy(int id) async {
     try {
       final order = await Order().query().where('order_num', '=', id).first();
 
